@@ -64,9 +64,13 @@ python3 -m unittest discover -s tests -v
 python3 evals/harnesses/ad_reward_model.py -v
 ```
 
-The GitHub workflow repeats the repository checks on Python 3.9 and 3.13 and
+The GitHub workflow repeats the repository checks on Python 3.9 and 3.13 using
+Ubuntu 24.04 and
 exercises an isolated full install/update. Its commit-specific outcome is
 available in GitHub Actions; this document records the local run separately.
+The initial `ubuntu-latest` run selected Ubuntu 26.04, where the setup action
+could not provide Python 3.9; Python 3.13's checks completed successfully. The
+workflow now pins a runner with published builds for both supported versions.
 
 ## Limits
 
