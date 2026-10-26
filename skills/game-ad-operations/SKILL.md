@@ -33,4 +33,6 @@ Recommend the smallest intervention supported by the baseline: fix an integratio
 
 For authorized provider changes, record the original setting, affected apps/versions, exact change and rollback. Account-level privacy or demand settings may affect older installed builds too. Re-read the setting after mutation and verify outcomes after the provider's processing window. Do not invent a universal wait interval or promise a revenue lift.
 
+For new demand or inconsistent dashboards, use [mediation onboarding and funnel reconciliation](references/mediation-and-reconciliation.md). It includes a worked eCPM-versus-delivery example, SDK size/performance costs, source fan-out denominators and a [source onboarding record](assets/mediation-onboarding.md).
+
 Use [the operations record](assets/operations-record.md) to return evidence, diagnosis, actions, verification and remaining unknowns. Read [sources](references/sources.md) for current Google procedures and [the Overgrowth lesson](references/overgrowth-lesson.md) for evidence boundaries.

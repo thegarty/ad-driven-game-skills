@@ -14,6 +14,8 @@ Identify audience, markets, platforms, genre, differentiation, acquisition chann
 
 Separate three questions: does the creative attract interest, does the store convert qualified visits, and do acquired players create enough retained value? Cheap installs alone do not answer the last question.
 
+Use [soft-launch gates](references/soft-launch.md) and the [scorecard](assets/soft-launch-scorecard.md) to turn technical readiness, product learning, retention and economics into explicit continue/revise/stop decisions with a bounded learning budget.
+
 ## Design creative and store tests
 
 Build a small concept matrix: audience motivation × real gameplay moment × opening hook × clear payoff. Change one interpretable element per comparison when possible. Show authentic interaction, understandable stakes and the actual visual style. A playable should teach a truthful sample of the loop and end with a clear store action.
@@ -21,6 +23,8 @@ Build a small concept matrix: audience motivation × real gameplay moment × ope
 Write a production brief containing aspect ratios/placements to verify with the selected network, footage/assets required, copy, variants and success criteria. Use captions and readable UI; check that the opening works without sound. Review asset licences and any generated-media rights for the intended use.
 
 Align icon, screenshots, preview and description with the same promise. Use store-specific experiments where available and compare their defined populations, not incomparable console percentages. See [store and attribution references](references/growth-recipes.md).
+
+For production work, follow the [creative pipeline](references/creative-pipeline.md) and [test brief](assets/creative-test-brief.md): preserve authentic footage, separate concept from execution hypotheses, verify export specifications/rights, and connect creative IDs to mature player outcomes.
 
 ## Measure acquired player quality
 

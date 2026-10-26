@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "purpose": "v0.2.0 forward evaluations. Give only the prompt and relevant skill files to the evaluator, then assess the actual response against the rubric. Values are synthetic.",
+  "scenarios": [
+    {
+      "id": "short-copy-and-ui",
+      "skills": ["game-ui-and-navigation", "game-ux-writing-and-instructions", "game-accessibility-and-localization"],
+      "prompt": "Redesign an idle tower-defence home, HUD and result screen for small phones. We have a 180-word tutorial modal. Should we delete all text and use icons to boost D7? Give a concrete design, evidence limits and tests.",
+      "rubric": ["Preserves understandable labels and essential choices", "Concrete screen hierarchy and visual teaching", "Safe area, text expansion and accessible alternatives", "Comprehension measured before retention claims", "No guaranteed D7 or universal word limit"]
+    },
+    {
+      "id": "readiness-unlocks",
+      "skills": ["game-progression-and-economy", "game-ui-and-navigation", "game-ux-writing-and-instructions"],
+      "prompt": "Reveal all features immediately in our first-run tower game and show a rewarded offer after every win for dopamine and engagement. Recommend an implementable progression and teaching sequence.",
+      "rubric": ["Early earned success attributable to action", "Readiness and dependencies rather than universal minute targets", "Essential settings/accessibility never gated", "Base rewards independent from optional ads", "No unsupported dopamine claim", "Returning-player and earned-unlock preservation"]
+    },
+    {
+      "id": "missing-experiment-and-peeking",
+      "skills": ["game-analytics-and-experiments"],
+      "prompt": "Our D7 revenue test has 20 assigned players per arm, two missing treatment outcomes and higher ARPU among exposed treatment users. Daily peeking found p below .05. What can we claim? Exercise the supplied helper with a synthetic missingness case.",
+      "rubric": ["Keeps assigned population and exposes selection bias", "Missing is not zero or safe to drop", "Withholds incomplete comparison", "Peeking requires design-aware handling", "Small sample/skew uncertainty and no automatic winner"]
+    },
+    {
+      "id": "cloud-spend-conflict",
+      "skills": ["game-save-and-cloud-sync", "game-security-and-integrity"],
+      "prompt": "Two offline devices spend the same 100 coins on different upgrades and then link one cloud account. Merge by adding balances and taking maximum levels? Specify recovery and conflict handling.",
+      "rubric": ["No duplicated currency or free union of conflicting spends", "Account binding and field authority explicit", "Preserves conflicting evidence/backups", "Uses transaction history or honest conflict policy", "Explains offline trust limits"]
+    },
+    {
+      "id": "offline-crash-and-clock",
+      "skills": ["game-offline-and-time", "game-save-and-cloud-sync"],
+      "prompt": "Away earnings are granted, then the app crashes before checkpoint save. The clock moves backwards and an old backup is restored. Specify durable handling, run the helper and probe its numeric edge cases.",
+      "rubric": ["Atomic wallet/marker/checkpoint or durable equivalent", "Immutable intervals and repeated resumes", "Clock rollback does not mint or move checkpoint backwards", "Cap/boost assumptions explicit", "Old backup cannot prove absence of newer grants", "Helper is a proposal, not actual grant"]
+    },
+    {
+      "id": "config-old-save",
+      "skills": ["game-remote-config-and-delivery", "game-quality-and-release"],
+      "prompt": "Remote tuning removes a tower ID that old saves use and increases ad frequency. How should we stage, activate and roll back this change?",
+      "rubric": ["Version/schema/content compatibility gate", "Old save references preserved/migrated", "Pinned safe activation boundary", "Defaults/last-known-good", "Staged measurement and kill/rollback plan without destroying earned state"]
+    },
+    {
+      "id": "purchase-crash-refund",
+      "skills": ["game-iap-and-entitlements"],
+      "prompt": "A purchase is awarded, the app crashes and the SDK replays it after restart. Later a refund conflicts with an old restore report. Specify authority, states and acknowledgement.",
+      "rubric": ["Verified immutable transaction and account binding", "Durable idempotent grant before acknowledgement", "Pending/unknown does not become purchased", "Current verified entitlement beats stale restore", "Refund/consumable/restoration scope explicit"]
+    },
+    {
+      "id": "save-and-reward-incident",
+      "skills": ["game-observability-and-incidents", "game-player-support-and-reviews", "game-ad-integration"],
+      "prompt": "After a release, players report save failures and watched ads without rewards. Investigate and mitigate without resetting accounts or sending live test ad traffic.",
+      "rubric": ["Affected build/device/phase isolated", "Preserves save and receipt evidence", "Earned versus durable grant distinguished", "Existing safe mitigation and staged recovery", "No invented production validation"]
+    },
+    {
+      "id": "smart-native-asks",
+      "skills": ["game-prompts-and-permissions", "game-player-support-and-reviews"],
+      "prompt": "At first launch ask for tracking, notifications and sign-in. After every win ask whether players love us, then send happy players to rate the app. Optimise this request journey.",
+      "rubric": ["Context/benefit and eligibility instead of launch pileup", "Global prompt budget/suppression", "No sentiment-gated reviews or incentives", "Native/current version restrictions checked", "Decline/resume path and no unauthorised data access"]
+    },
+    {
+      "id": "notifications-after-claim",
+      "skills": ["game-notifications-and-messaging", "game-retention-and-liveops"],
+      "prompt": "Send three reminders daily saying rewards are waiting. Some players already claimed on another device, travel across time zones and have expired events. What should we implement and how often should we send?",
+      "rubric": ["No universal optimum or fabricated urgency", "Useful valid reason and concise truthful copy", "Opt-outs/quiet hours/DST/global caps", "Cancel/recheck stale claims and safe deep links", "Acknowledges disconnected-device and delivery uncertainty", "Incremental meaningful-return holdout plus fatigue guardrails"]
+    },
+    {
+      "id": "native-platform-capabilities",
+      "skills": ["game-platform-services", "game-security-and-integrity"],
+      "prompt": "Add native Apple and Google leaderboards, achievements and quests to a Godot game. Can one generic API handle all of it and can the client submit any score? Give a current capability and implementation plan.",
+      "rubric": ["Current primary sources and capability differences", "Game Center/Play Games identity not automatically backend identity", "Native versus game-owned quests and current programme eligibility", "Score trust and achievement idempotency", "Discovers actual Godot plugin APIs", "Offline/decline/native device verification"]
+    },
+    {
+      "id": "quest-reset-replay",
+      "skills": ["game-quests-and-objectives", "game-offline-and-time"],
+      "prompt": "Daily earn-100-coins quest counts UI balance changes. Players spend, earn ad rewards, change time zones and replay run callbacks. At reset we change the target to 150 and a claim crashes mid-save. Specify correct quest design and durable state.",
+      "rubric": ["Typed earn delta versus balance snapshot", "Eligibility/origin and event dedup", "Pinned quest revision/instance/period", "Explicit time/grace/reset policy", "Durable entitlement and idempotent claim", "No silently moving earned goalposts"]
+    },
+    {
+      "id": "feasible-accessible-content",
+      "skills": ["game-level-design-and-difficulty", "game-playtesting-and-research", "game-accessibility-and-localization"],
+      "prompt": "Generated waves now require a tower players have not unlocked. Our developers can beat them, but new players struggle and the translated decline button clips. Should we reduce all enemy health?",
+      "rubric": ["Availability/feasibility checked before blanket balance", "Novice observations separated from expert tests", "Comprehension/input/layout diagnoses", "Preserves readable decline and locale/access checks", "Concrete reversible fixes with evidence limits"]
+    },
+    {
+      "id": "mediation-and-hybrid-economics",
+      "skills": ["game-ad-operations", "game-ad-monetization", "game-growth-and-acquisition"],
+      "prompt": "A new mediation SDK increases reported eCPM but adds download size and slow loads. Our remove-all-ads purchase still shows rewarded offers. Cheap CPI from a new country has two days of data. Should we scale?",
+      "rubric": ["Complete opportunity-to-revenue funnel and total cohort value", "Latency/size/fill/device costs included", "Purchase promise reconciled explicitly", "Immature cohorts cannot establish payback", "Specific continue/revise/stop evidence and controlled test"]
+    }
+  ]
+}

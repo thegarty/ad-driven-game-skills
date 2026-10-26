@@ -16,6 +16,13 @@ overlapping entry point. Keep each skill independently installable.
   simulation or a successful source test does not establish commercial uplift.
 - Add useful templates/scripts only when they reduce repeated effort or improve
   correctness. Helpers use Python 3.9+ and the standard library.
+- Follow the [evidence standard](docs/evidence-standard.md). Separate primary
+  research from platform guidance and original hypotheses. Do not extrapolate
+  engagement effects across genres, populations or outcome definitions.
+- Keep visual examples original, captioned and labelled as proposals; preserve
+  generation prompts/provenance and editable/localisable production text.
+- Update catalogue, routing, profiles and coverage when introducing a distinct
+  capability. Larger coverage must not force every game to ship every system.
 
 ## Verification
 
@@ -24,6 +31,10 @@ Run `python3 scripts/validate_library.py` and
 decision guidance. Give an independent agent the user scenario and skill files
 without the expected answer; score the actual response against the rubric after
 it finishes. Record failures and fixes, not only passing examples.
+
+Use both [core scenarios](evals/scenarios.json) and the
+[expanded scenarios](evals/expansion-scenarios.json) as appropriate; record exactly
+which were run rather than treating historical results as new executions.
 
 For packaging changes, check selective installation, local-edit detection,
 relative references and client discovery in an isolated temporary project.

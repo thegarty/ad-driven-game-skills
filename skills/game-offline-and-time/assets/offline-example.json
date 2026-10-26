@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "timeline_id": "synthetic-profile-1",
+  "currency": "synthetic nectar units",
+  "rule_version": "synthetic-rule-1",
+  "checkpoint_unix_s": 1000,
+  "resume_unix_s": 2000,
+  "cap_seconds": 600,
+  "base_rate_per_second": "0.25",
+  "boosters": [
+    {"start_unix_s": 1000, "end_unix_s": 1100, "multiplier": "2"}
+  ],
+  "settled_intervals": [],
+  "assumptions": [
+    "Synthetic timestamps and currency; no production clock or save is read.",
+    "The first capped seconds after the checkpoint are eligible; excess time is discarded.",
+    "Rate and boost snapshots were fixed before this absence; no fractional rounding is applied."
+  ]
+}

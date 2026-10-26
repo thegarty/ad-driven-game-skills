@@ -55,6 +55,11 @@ packaged data. Better compression can add CPU/load cost. Measure the tradeoff.
 
 ## Make the improvement stick
 
+For slow frames, memory growth, loading stalls or thermal degradation, use
+[runtime profiling](references/runtime-profiling.md) and the
+[runtime profile record](assets/runtime-profile.md). Separate CPU, GPU, native
+service, memory and sustained-load evidence before choosing an optimisation.
+
 Compare before/after release builds using the same variant and measurement tool.
 For update budgets, measure the actual transfer when upgrading from the previous
 installed release through the intended delivery route. Archive-size differences

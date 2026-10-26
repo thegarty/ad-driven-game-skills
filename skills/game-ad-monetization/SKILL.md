@@ -21,6 +21,7 @@ Map three different quantities: opportunities created by gameplay, opportunities
 3. Specify a clear offer, stable placement ID, reward definition, eligibility, first-session treatment, exposure cap, cooldown, unavailable-ad behaviour and exit route in the [placement matrix](assets/ad-placement-matrix.md).
 4. Evaluate reward value at early, middle and late progression. Compare ordinary earning time, the next useful purchase, competing offers and maximum daily issuance. Check both players who decline all ads and those accepting every legal offer.
 5. Define interactions with purchases using the [entitlement guide](references/purchases-and-entitlements.md). The product copy and executable entitlement rules must agree.
+   Use [hybrid economics](references/hybrid-economics.md) to account for displaced ad revenue, paid reward claims, refunds and costs at one cohort horizon.
 6. Specify one primary experiment question and player-experience guardrails. Examples include cohort cumulative net revenue with retention, crash rate and abandoned sessions as guardrails. Set analysis windows and practical decision thresholds from the project's data and constraints, not generic benchmarks.
 
 ## Diagnose before adding pressure

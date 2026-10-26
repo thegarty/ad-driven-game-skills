@@ -31,7 +31,11 @@ A longer session is not always desirable: add save/resume or a satisfying stoppi
 
 Use [the retention experiment brief](assets/retention-experiment.md). Specify audience, eligibility, start/end rules, rewards, clock, late/offline behaviour, content cost and a rollback path. Preserve earned progress when an event ends and explain unclaimed rewards. Avoid a streak design that unexpectedly erases permanent progress when a day is missed.
 
+Use [event operations and fair competition](references/event-operations.md) for versioned event states, late claims, durable reward identity and comparable scoring. Choose social features with an explicit identity, moderation and support plan; a leaderboard reference is not a multiplayer implementation.
+
 For reminders, define the actual player benefit, relevant consent/preferences and a cancellation condition when the reason disappears. Design and measure the reminder first; creating a live notification campaign is a separate action requiring the user's authorisation. Check current platform requirements before implementation.
+
+Use [the notification lifecycle](references/notification-lifecycle.md) for permission, quiet hours, expiry, cancellation, travel and stale-destination handling. Scheduling, delivery, opening and meaningful return are separate outcomes.
 
 ## Measure and iterate
 

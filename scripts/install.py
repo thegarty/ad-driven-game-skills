@@ -81,7 +81,35 @@ def read_manifest(path):
         raise InstallError("Invalid install manifest: %s" % exc) from exc
 
 
-def install(repo, destination, selected=None, update=False, dry_run=False):
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON key: " + key)
+        result[key] = value
+    return result
+
+
+def read_profiles(repo):
+    """Read validated, additive installation groups before touching destination."""
+    try:
+        data = json.loads((Path(repo) / "profiles.json").read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+        available = {p.name for p in (Path(repo) / "skills").iterdir() if (p / "SKILL.md").is_file()}
+        if not isinstance(data, dict) or not data:
+            raise ValueError("expected a nonempty object")
+        for name, members in data.items():
+            if not NAME.fullmatch(name) or not isinstance(members, list) or not members:
+                raise ValueError("invalid profile: " + str(name))
+            if any(not isinstance(item, str) or item not in available for item in members):
+                raise ValueError("unknown skill in profile: " + name)
+            if len(members) != len(set(members)):
+                raise ValueError("duplicate skill in profile: " + name)
+        return data
+    except (OSError, ValueError, TypeError) as exc:
+        raise InstallError("Invalid profiles: %s" % exc) from exc
+
+
+def install(repo, destination, selected=None, update=False, dry_run=False, profiles=None):
     repo = Path(repo).resolve()
     destination = Path(destination).expanduser().absolute()
     source_root = repo / "skills"
@@ -93,7 +121,14 @@ def install(repo, destination, selected=None, update=False, dry_run=False):
     if destination.exists() and not destination.is_dir():
         raise InstallError("Destination is not a directory")
     available = sorted(p.name for p in source_root.iterdir() if (p / "SKILL.md").is_file())
-    chosen = list(dict.fromkeys(selected or available))
+    requested = list(selected or [])
+    if profiles:
+        groups = read_profiles(repo)
+        for profile in profiles:
+            if profile not in groups:
+                raise InstallError("Unknown profile: %s" % profile)
+            requested.extend(groups[profile])
+    chosen = list(dict.fromkeys(requested or available))
     if not chosen:
         raise InstallError("No skills found")
     for name in chosen:
@@ -211,13 +246,22 @@ def install_selected(source_root, destination, chosen, version, update, dry_run)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dest", type=Path, required=True, help="Explicit AI client skill directory")
+    parser.add_argument("--dest", type=Path, help="Explicit AI client skill directory (required unless listing profiles)")
     parser.add_argument("--skill", action="append", help="Install one skill; repeat to select several (default: all)")
+    parser.add_argument("--profile", action="append", help="Install a named group; repeat or combine with --skill")
+    parser.add_argument("--list-profiles", action="store_true", help="List groups without installing anything")
     parser.add_argument("--update", action="store_true", help="Update clean copies managed by this installer")
     parser.add_argument("--dry-run", action="store_true", help="Check and report changes without writing")
     args = parser.parse_args()
+    repo = Path(__file__).resolve().parents[1]
+    if not args.list_profiles and args.dest is None:
+        parser.error("--dest is required unless --list-profiles is used")
     try:
-        result = install(Path(__file__).resolve().parents[1], args.dest, args.skill, args.update, args.dry_run)
+        if args.list_profiles:
+            for name, members in read_profiles(repo).items():
+                print("%s: %s" % (name, ", ".join(members)))
+            return 0
+        result = install(repo, args.dest, args.skill, args.update, args.dry_run, args.profile)
     except (InstallError, OSError) as exc:
         print("Install error: %s" % exc, file=sys.stderr)
         return 1

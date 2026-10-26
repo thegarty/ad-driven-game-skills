@@ -3,7 +3,7 @@
 Practical skills for AI agents building mobile games that people want to return
 to—and that can earn sustainable advertising revenue.
 
-**16 focused skills · Android and iOS · Godot/AdMob/Firebase recipes · MIT**
+**33 focused skills · Android and iOS · Godot/AdMob/Firebase recipes · MIT**
 
 Use the library to design a new game, improve an existing one, implement reliable
 ads, or decide what to test next. It covers gameplay, progression, retention,
@@ -11,6 +11,12 @@ creative production, monetisation, measurement, acquisition and release. Optiona
 purchases and ad-removal entitlements are included. A dedicated size and
 performance skill covers store limits, compression, asset/SDK bloat and release
 size budgets.
+
+The expanded library covers look and feel, HUDs/menus/layouts, concise text and
+visual teaching, gradual feature unlocks, quests, native Apple/Google player
+services, smart prompts and notifications. It also covers playtesting,
+accessibility/localisation, saves/cloud conflicts, offline progress, verified
+purchases, remote configuration, security, incidents and player support.
 
 The core guidance is engine-independent. Godot is the first detailed integration
 path; native recipes describe contracts and verification steps, not a bundled
@@ -25,7 +31,7 @@ install copies into your AI client's skill directory:
 ```sh
 git clone https://github.com/thegarty/ad-driven-game-skills.git
 cd ad-driven-game-skills
-git checkout v0.1.0
+git checkout v0.2.0
 python3 scripts/install.py --dest "$HOME/.codex/skills" --dry-run
 python3 scripts/install.py --dest "$HOME/.codex/skills"
 ```
@@ -55,6 +61,17 @@ python3 scripts/install.py --dest "$HOME/.claude/skills" \
 Each specialist includes its own resources and licence. You can also manually
 copy any folder under `skills/` into your client's skill directory. The installer
 will not take over a manually copied or otherwise unmanaged folder.
+
+Or select an additive profile: `prototype`, `design-ui`, `monetization`,
+`engineering`, `launch` or `liveops`. Repeat profiles or combine with `--skill`;
+with neither option the installer copies all skills. Profiles do not force an
+agent to load every resource and do not remove previously installed skills.
+
+```sh
+python3 scripts/install.py --list-profiles
+python3 scripts/install.py --dest "$HOME/.codex/skills" --profile design-ui --dry-run
+python3 scripts/install.py --dest "$HOME/.codex/skills" --profile design-ui
+```
 
 ### Update safely
 
@@ -113,6 +130,23 @@ help when your agent has many installed skills.
 > consent changes, late and duplicate callbacks, save failure and restart.
 > Show the earned-to-durable-grant contract and test it without real ad traffic.
 
+### Make the game clearer and more engaging
+
+> Use game-ui-and-navigation, game-ux-writing-and-instructions and
+> game-progression-and-economy. Audit our home, HUD, result and upgrade screens.
+> Replace long tutorial modals with brief contextual teaching where it helps.
+> Produce annotated visual layouts, an earned early success and a readiness-based
+> feature-unlock schedule. Test comprehension and voluntary continuation;
+> distinguish the proposed design from measured retention effects.
+
+### Add useful goals and reminders
+
+> Use game-quests-and-objectives, game-platform-services and
+> game-notifications-and-messaging. Design a small quest chain, decide which
+> milestones belong in Apple/Google achievements, and define useful reminders.
+> Include offline progress, duplicate events, stale notifications, opt-outs,
+> native sign-in failure and a notification holdout test.
+
 Give the agent access to your game repository and relevant reports. The
 [project-context template](skills/ad-game-director/assets/project-context.md)
 helps carry decisions across sessions. Unknown values should stay unknown;
@@ -120,11 +154,13 @@ synthetic examples are not benchmarks for your game.
 
 ## What's inside
 
-- [Skill catalogue](CATALOG.md): all 16 skills and their concrete deliverables.
+- [Skill catalogue](CATALOG.md): all 33 skills and their concrete deliverables.
+- [Coverage map](docs/coverage.md): capabilities, runnable helpers and scope boundaries.
 - Each skill's `SKILL.md`: task selection and essential workflow.
 - `references/`: focused recipes, evidence boundaries and dated official sources.
 - `assets/`: project, game, economy, ad-placement, measurement and release templates.
-- `scripts/` inside selected skills: economy, cohort and revenue/CPI calculators.
+- `scripts/` inside selected skills: economy, cohort, revenue/CPI, experiment,
+  offline-accrual and colour-contrast helpers.
 - The size skill's artifact inventory helper: largest shipped files, explicit
   byte budgets and comparison with a previous build.
 - [Behavioral evaluations](evals/scenarios.json) and [validation record](docs/validation.md).
@@ -157,6 +193,17 @@ explicit limits. They do not claim measured retention or revenue uplift.
 SDK and policy sources have verification dates. Re-check current official
 documentation for the selected version, audience and markets before shipping.
 Design hypotheses need playtesting; economic assumptions need real cohorts.
+
+The [evidence standard](docs/evidence-standard.md) separates primary research,
+platform guidance, original hypotheses and measured results. It avoids universal
+claims about optimal timing, word counts, ad frequency or engagement. Visual
+examples are labelled concepts, including this original teaching storyboard:
+
+![Illustrative sequence: show a tower placement, let the player protect the path, then show earned feedback.](skills/game-ux-writing-and-instructions/assets/visual-teaching-example.png)
+
+[Teaching workflow and text equivalent](skills/game-ux-writing-and-instructions/references/visual-teaching.md)
+· [Image prompt and provenance](skills/game-ux-writing-and-instructions/assets/visual-teaching-prompt.md).
+This image is documentation, not a production asset or tested retention result.
 
 To validate a checkout:
 

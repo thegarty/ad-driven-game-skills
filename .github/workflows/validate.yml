@@ -27,3 +27,7 @@ jobs:
           python scripts/install.py --dest "$RUNNER_TEMP/ad-game-skills" --dry-run
           python scripts/install.py --dest "$RUNNER_TEMP/ad-game-skills"
           python scripts/install.py --dest "$RUNNER_TEMP/ad-game-skills" --update
+          python scripts/install.py --list-profiles
+          python scripts/install.py --dest "$RUNNER_TEMP/ad-game-ui" --profile design-ui --dry-run
+          python scripts/install.py --dest "$RUNNER_TEMP/ad-game-ui" --profile design-ui
+          python scripts/install.py --dest "$RUNNER_TEMP/ad-game-ui" --profile design-ui --update

@@ -21,6 +21,10 @@ For a stall, determine whether the cause is unclear requirements, a hidden count
 
 Use [economy reasoning and Overgrowth lessons](references/economy-reasoning.md) when interpreting strategy, clock or reward-value differences.
 
+Use [worked balance patterns](references/worked-balance-patterns.md) for cost curves, complementary upgrades, prestige ledgers and stage-sensitive rewards. Recalculate their synthetic assumptions against the game's actual rules; they are not suggested production defaults.
+
+For a gradually opening game, use [feature unlocks and satisfying payoffs](references/feature-unlocks-and-payoffs.md) and [the unlock schedule](assets/unlock-schedule.md). Sequence complexity from readiness, useful context and earned competence; keep basic access and settings available, preserve earned unlocks, and treat first-session timing as a hypothesis to test.
+
 ## Evaluate a change
 
 Express value in context: time of ordinary earning, progress toward a useful purchase and the choice it unlocks. Compare early, middle and late stages separately. A flat reward can be valuable early and irrelevant later; a percentage reward can dominate after long runs. Calculate both the ordinary path and the proposed optional bonus.

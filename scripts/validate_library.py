@@ -21,9 +21,27 @@ EXPECTED = {
     "game-privacy-and-platform-policy", "game-analytics-and-experiments",
     "game-quality-and-release", "game-growth-and-acquisition",
     "game-profitability-and-priorities", "game-size-and-performance",
+    "game-playtesting-and-research", "game-level-design-and-difficulty",
+    "game-accessibility-and-localization", "game-systems-architecture",
+    "game-save-and-cloud-sync", "game-offline-and-time",
+    "game-remote-config-and-delivery", "game-iap-and-entitlements",
+    "game-observability-and-incidents", "game-player-support-and-reviews",
+    "game-ui-and-navigation", "game-ux-writing-and-instructions",
+    "game-security-and-integrity", "game-prompts-and-permissions",
+    "game-notifications-and-messaging",
+    "game-platform-services", "game-quests-and-objectives",
 }
 LINK = re.compile(r"\[[^\]]*\]\((<[^>]+>|[^\s)]+)(?:\s+\"[^\"]*\")?\)")
 NAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
+
+def unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError("duplicate JSON key: " + key)
+        result[key] = value
+    return result
 
 
 def frontmatter(text):
@@ -119,7 +137,7 @@ def validate_library(root):
                     json.loads(path.read_text(encoding="utf-8"), parse_constant=lambda value: (_ for _ in ()).throw(ValueError("nonfinite JSON: " + value)))
             except (SyntaxError, ValueError) as exc:
                 errors.append(str(path.relative_to(root)) + ": " + str(exc))
-    docs = list(root.glob("*.md")) + list((root / "docs").rglob("*.md"))
+    docs = list(root.glob("*.md")) + list((root / "docs").rglob("*.md")) + list((root / "evals").rglob("*.md"))
     for path in docs:
         for raw, target in linked_files(path):
             if root not in target.parents and target != root:
@@ -137,6 +155,23 @@ def validate_library(root):
     version = root / "VERSION"
     if not version.exists() or not re.fullmatch(r"\d+\.\d+\.\d+\n?", version.read_text(encoding="utf-8")):
         errors.append("VERSION must contain a semantic release number")
+    try:
+        profiles = json.loads((root / "profiles.json").read_text(encoding="utf-8"), object_pairs_hook=unique_object)
+        if not isinstance(profiles, dict) or not profiles:
+            raise ValueError("profiles must be a nonempty object")
+        covered = set()
+        for name, members in profiles.items():
+            if not NAME.fullmatch(name) or not isinstance(members, list) or not members:
+                raise ValueError("invalid profile: " + str(name))
+            if any(not isinstance(item, str) or item not in EXPECTED for item in members):
+                raise ValueError("unknown skill in profile: " + name)
+            if len(members) != len(set(members)):
+                raise ValueError("duplicate skill in profile: " + name)
+            covered.update(members)
+        if covered != EXPECTED:
+            raise ValueError("skills missing from profiles: " + ", ".join(sorted(EXPECTED - covered)))
+    except (OSError, ValueError, TypeError) as exc:
+        errors.append("profiles.json: " + str(exc))
     return errors
 
 

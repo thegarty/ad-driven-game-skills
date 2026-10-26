@@ -86,6 +86,40 @@ class InstallTests(unittest.TestCase):
                 self.run_install([name])
         self.assertFalse(self.dest.exists())
 
+    def test_profile_selection_union_and_complete_resources(self):
+        (self.repo / "profiles.json").write_text(json.dumps({"one": ["alpha"], "both": ["alpha", "beta"]}))
+        plans = self.run_install(["beta"], profiles=["one", "both"], dry_run=True)
+        self.assertEqual([p["skill"] for p in plans], ["beta", "alpha"])
+        self.assertFalse(self.dest.exists())
+        self.run_install(profiles=["one"])
+        self.assertTrue((self.dest / "alpha/references/guide.md").is_file())
+        self.assertFalse((self.dest / "beta").exists())
+
+    def test_bad_profiles_fail_without_destination(self):
+        for data in ({"one": ["missing"]}, {"one": ["alpha", "alpha"]}, {"one": []}, [], {"../bad": ["alpha"]}):
+            (self.repo / "profiles.json").write_text(json.dumps(data))
+            with self.subTest(data=data), self.assertRaises(installer.InstallError):
+                self.run_install(profiles=["one"])
+            self.assertFalse(self.dest.exists())
+        (self.repo / "profiles.json").write_text(json.dumps({"one": ["alpha"]}))
+        with self.assertRaisesRegex(installer.InstallError, "Unknown profile"):
+            self.run_install(profiles=["missing"])
+        self.assertFalse(self.dest.exists())
+
+    def test_profile_update_preserves_local_changes(self):
+        (self.repo / "profiles.json").write_text(json.dumps({"one": ["alpha"]}))
+        self.run_install(profiles=["one"])
+        (self.dest / "alpha/references/guide.md").write_text("my edit")
+        with self.assertRaisesRegex(installer.InstallError, "Local changes"):
+            self.run_install(profiles=["one"], update=True)
+        self.assertEqual((self.dest / "alpha/references/guide.md").read_text(), "my edit")
+
+    def test_duplicate_profile_keys_fail_without_destination(self):
+        (self.repo / "profiles.json").write_text('{"starter":["alpha"],"starter":["beta"]}')
+        with self.assertRaisesRegex(installer.InstallError, "duplicate JSON key"):
+            self.run_install(profiles=["starter"])
+        self.assertFalse(self.dest.exists())
+
     def test_symlinks_are_rejected(self):
         (self.repo / "skills/alpha/link").symlink_to(self.repo / "VERSION")
         with self.assertRaisesRegex(installer.InstallError, "symlink"):

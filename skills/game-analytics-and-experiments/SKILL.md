@@ -32,6 +32,8 @@ Check assignment balance, missing events, contamination and cohort maturity befo
 
 When traffic is small, return a diagnosis or an inconclusive experiment with the next evidence needed. Product observations and simulated economies can prioritise a hypothesis; they cannot substitute for a causal retention result.
 
+Use the [worked experiment readout](references/experiment-analysis.md) for assignment versus exposure, sample-ratio checks, missingness, skew and stopping rules. With a complete participant-level roster, the [experiment helper](references/experiment-helper.md) calculates reproducible uncertainty while preserving nonexposed players and withholding comparisons with incomplete outcomes. It does not decide whether to ship.
+
 ## Deliver
 
 Produce the measurement contract, the smallest instrumentation changes needed, a reproducible calculation or query, and a decision with limitations. If changing code, verify event ownership and one real sample of each changed path in an appropriate test environment. Publishing a remote configuration experiment is a separate operational action governed by the user's scope.

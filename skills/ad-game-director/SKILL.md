@@ -20,6 +20,8 @@ choices that materially affect the work. Identify:
 - Audience, accessibility needs, intended ages and markets.
 - Platform, engine/version, existing ad/analytics/purchase services and native bridges.
 - Core loop, progression stage, monetisation promises and free route.
+- Screen/navigation flow, instruction burden, feature-unlock readiness and
+  player goals; available visual assets and their provenance.
 - Current stage: concept, prototype, soft launch or live operation.
 - Evidence quality: source inspection, source testing, simulation or live measurement.
 - Available team time, content capacity, budget and observable success criteria.
@@ -62,6 +64,13 @@ commercial recommendations. Keep longer sessions, return retention and
 monetisation separate. Compare mature, comparable cohorts and measure total
 value over a stated horizon. Revenue from more ads can coexist with worse
 player outcomes; investigate both before calling an experiment successful.
+
+For “more engagement,” define an observable player outcome: understanding,
+enjoyment, mastery, voluntary replay or return. Use visual layouts/storyboards
+when useful, preserve concise informed choices and introduce features when
+players can use them. Do not claim universal optimal prompts, notification
+frequency, word counts or dopamine effects. Route the specific problem using
+the guide rather than installing every engagement system at once.
 
 Retain a playable free route, explicit rewarded-offer intent, understandable
 purchase promises and recovery from ad unavailability. Audience-specific

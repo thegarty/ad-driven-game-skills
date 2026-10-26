@@ -21,6 +21,8 @@ After repeated comparable failures, consider a bounded hint tied to the observed
 
 Use [first-play and recap review](references/first-play-and-recap.md) for a sanitised Overgrowth lesson and the compact-screen acceptance scenarios.
 
+Use [gameplay input and feedback](references/gameplay-input-and-feedback.md) for pointer ownership, drag/commit/cancel states, interruption and contextual teach/do/check recipes. Test unaided comprehension before adding more explanation; avoid making every new feature a blocking modal.
+
 ## Improve feel without obscuring information
 
 Inspect input latency, visual response, animation timing, audio/haptics and feedback consistency. Prefer immediate acknowledgement of an input, followed by clear result feedback. Important cues should not rely on colour, sound or vibration alone. Provide usable mute/motion/feedback choices appropriate to the game's effects and verify that reduced feedback still conveys the rules.

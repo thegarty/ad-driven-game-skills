@@ -17,6 +17,8 @@ Implement the ad lifecycle as an explicit, testable service boundary. Start by i
 
 Read the [state and reward contract](references/state-and-rewards.md) before changing callbacks, persistence, retry behaviour or consent invalidation. Read the [Godot recipe](references/godot-adapter.md) for engine/native boundaries and [telemetry recipe](references/firebase-telemetry.md) for Firebase event ownership. These are implementation recipes, not a pretested SDK plugin.
 
+Read [server verification and mediation](references/server-verification-and-mediation.md) when adding server-authoritative rewards, reconciling client and server notifications, or introducing another mediated SDK. Choose the authority and provisional-reward policy before writing either grant path.
+
 ## Implement and validate
 
 1. Put the provider behind an adapter. Keep gameplay reward calculation and persistent grant logic outside native SDK listeners.

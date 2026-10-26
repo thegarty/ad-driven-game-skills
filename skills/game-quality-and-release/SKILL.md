@@ -20,6 +20,8 @@ Use the [release checklist](assets/release-checklist.md) as a working record, ma
 
 Read [release and rollback guidance](references/release-and-rollback.md) when creating a rollout or investigating whether a fix reached users. Use [official sources](references/sources.md) for current export and store procedures.
 
+Use the [automation and fault-injection matrix](references/automation-and-fault-injection.md) to turn changed behavior into repeatable tests with explicit failure points and expected recovery. Isolate test identities, saves and service environments before automating destructive lifecycle cases.
+
 ## Decide and roll out
 
 Document release-blocking failures and explicit acceptance criteria before promotion. Preserve existing authorization for uploading/publishing; a skill invocation is not itself authorization to change production services or spend money. Do the authorized preparation and validation first.

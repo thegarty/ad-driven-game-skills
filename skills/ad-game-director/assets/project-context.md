@@ -14,6 +14,11 @@ This template belongs in the game project, not in the installed skill folder.
 | Current stage and build/source revision | |
 | Session loop and reason to return | |
 | Progression, currencies and free route | |
+| Early earned success and readiness-based feature unlocks | |
+| Screen flow, visual direction and instruction burden | |
+| Quests, native achievements/leaderboards and identity model | |
+| Prompt/notification eligibility, opt-outs and frequency policy | |
+| Accessibility, localisation and visual asset budgets | |
 | Ad formats, placements and providers | |
 | Purchase/entitlement promises | |
 | Analytics, attribution and consent coverage | |

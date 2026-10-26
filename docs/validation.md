@@ -1,60 +1,56 @@
-# v0.1.0 validation
+# v0.2.0 validation
 
 Validated on **26 October 2026**, using Python 3.9.6 on macOS. This record covers
-the skill library and its tools, not a built or released mobile game.
+the library, local helpers and documented evaluation tasks. The
+[v0.1.0 validation record](validation-v0.1.0.md) is preserved separately.
 
 | Check | Observed result |
 |---|---|
-| Bundled skill-creator metadata validator | All 16 skill folders passed; run in an isolated environment with PyYAML 6.0.3 |
-| Library package validator | Metadata, required coverage, standalone local references, catalogue, Python syntax and JSON checked |
-| Unit suite | 74 tests passed across calculators, installer, packaging and artifact-size checker |
-| Independent ad design model | 15 fake-provider/SQLite checks passed |
-| Behavioral evaluations | Nine realistic scenarios assessed; actual outcomes and corrections in the [evaluation record](../evals/results/v0.1.0.md) |
-| Installation | Dry run, selected copies, full installation and clean updates exercised in temporary destinations; originals in user skill folders were untouched |
-| Installed helper use | Economy, cohort and revenue helpers executed against their synthetic fixtures from copied skill folders |
-| Codex discovery | Codex CLI 0.146.0 discovered project-local installed skills and read the selected skill plus linked cohort reference |
-| Claude Code and Cursor | Official installation/format documentation checked; no executable smoke test because their clients were unavailable |
-| Public-content review | Original guidance/synthetic fixtures; scans found no private machine paths, ad publisher IDs, credentials or unfinished scaffold markers in public content |
+| Bundled skill-creator metadata validator | All 33 skills passed in an isolated environment with PyYAML 6.0.3 |
+| Library validator | Required names, metadata, standalone references, catalogue, root/docs/evaluation links, profiles, Python syntax and JSON passed |
+| Repository unit suite | 125 tests passed, including experiment readout, offline settlement, contrast and profile selection/protection |
+| Ad design model | 15 fake-provider/SQLite tests passed; original scope retained |
+| Independent offline oracle | 15 additional temporary test methods passed after the precision fix, including 200 seeded Fraction comparisons and invalid-input subcases |
+| Behavioral evaluations | Four independent reviewers answered fourteen expanded scenarios; outcomes and fixes in the [evaluation record](../evals/results/v0.2.0.md) |
+| Installation | Full copy, all six profiles, dry runs and clean updates exercised in temporary destinations; every installed skill's resources and MIT copy checked |
+| Installed helpers | Economy, cohort, revenue, offline, experiment and contrast helpers ran from copied skill folders against synthetic inputs |
+| Codex discovery | CLI 0.146.0 loaded the two named UI/writing skills, linked research/visual/evidence/contrast references and image provenance from a temporary `.agents/skills` installation |
+| Claude Code / Cursor | Documentation-checked compatibility; executables unavailable for smoke testing |
+| Visual example | Original generated storyboard inspected for readable labels and teaching sequence; prompt, text equivalent and proposal status included |
+| Public-content review | Original prose, synthetic examples and licensed notices; no private machine paths, provider IDs, credentials or unfinished scaffold markers found in the text scan |
 
-The Codex smoke request supplied a skill name, without its file path. In a
-temporary project it loaded `.agents/skills/game-analytics-and-experiments/SKILL.md`
-and `references/cohort-helper.md`, correctly described the separate install and
-activity inputs, and explained immature-cohort handling. This verifies one
-explicit selection and supporting-resource flow; it is not proof of every
-automatic-routing behavior across clients.
+## What the tests establish
 
-## Correctness checks
+The new experiment helper keeps all assigned units, rejects duplicate/conflicting
+assignment and withholds the primary comparison for missing/immature outcomes.
+Known means, zero/empty cases, reproducibility, small samples and invalid values
+are covered. Its bootstrap interval does not validate the experiment design,
+correct optional stopping or automatically select a winner.
 
-- Economy and revenue: known arithmetic, finite inputs, invalid/missing fields,
-  reward caps, unaffordable spends, decimal affordability, exact break-even,
-  real shortfalls, overflow and CLI errors.
-- Cohorts: complete install denominator, duplicates, conflicting identities,
-  exact-day definitions, weighted aggregate, date cutoffs, empty populations and
-  immature cohorts represented as unavailable rather than zero.
-- Installer: selective/complete copies, dry runs, idempotence, explicit clean
-  updates, local additions/edits/deletions, unmanaged folders, symlinks, invalid
-  manifests, locking, concurrent edits and failure recovery.
-- Artifact inventory: local file/directory/ZIP measures, absolute/growth budgets,
-  baseline compatibility, duplicate names, invalid archives, symlinks and CLI
-  exit status. These are synthetic files, not store-produced app variants.
-- Ad design model: bounded retries, stale callbacks, consent generations,
-  explicit Watch intent, close/earn ordering, duplicate rewards, immutable claims
-  and transactional recovery after injected exceptions/database reopen.
+Offline tests cover caps, boost expiry, interval union, replay, rollback, exact
+decimal totals, claim namespace, missing fields and CLI errors. The helper
+returns a proposed settlement; actual persistence, clock authority and cloud
+reconciliation remain application responsibilities. Independent review found an
+extreme valid-input precision defect, now fixed with a rational regression.
 
-## Findings fixed before publication
+Contrast tests cover known ratios, symmetry, threshold boundaries without
+rounding and invalid inputs. This is a colour-pair calculation, not a native
+accessibility certificate. Profile tests cover selection unions, malformed or
+duplicate definitions, no-write dry runs and local-change preservation. Existing
+installer rollback/locking, calculator and artifact-inventory checks remain.
 
-Independent review reproduced an installer rollback failure that could delete
-the remaining backup if restoration failed. The installer now preserves recovery
-files, reports their location and attempts the remaining rollbacks. It also
-locks destinations and rechecks moved/replacement content to detect edits during
-an update.
+## Client smoke details
 
-Fractional binary floating-point values could reject an exactly affordable spend
-or classify exact break-even as a tiny loss. Economy and revenue decisions now
-use decimal arithmetic internally; output remains finite JSON numbers with the
-documented representation limits. The reward recipe's already-applied branch
-was clarified so it also acknowledges the pending receipt after confirming the
-durable result. Regression tests and the independent model cover these changes.
+The smoke prompt named skills without file paths. The successful Codex execution
+read both installed entrypoints, selected linked references and the visual's
+provenance; its answer correctly explained evidence limits and contrast CLI exit
+codes. It did not generate a new image, modify a game or browse.
+
+The first attempt using the machine's configured model failed because that model
+required a newer CLI. Repeating with `--ignore-user-config` and the CLI's own
+defaults succeeded. No persistent user settings were changed. This establishes
+one explicit discovery/resource flow in that configuration, not universal
+automatic routing or compatibility with every model/client version.
 
 ## Reproduce
 
@@ -62,26 +58,25 @@ durable result. Regression tests and the independent model cover these changes.
 python3 scripts/validate_library.py
 python3 -m unittest discover -s tests -v
 python3 evals/harnesses/ad_reward_model.py -v
+python3 scripts/install.py --list-profiles
+python3 scripts/install.py --dest /your/temporary/skills --profile design-ui --dry-run
 ```
 
-The GitHub workflow repeats the repository checks on Python 3.9 and 3.13 using
-Ubuntu 24.04 and
-exercises an isolated full install/update. Its commit-specific outcome is
-available in GitHub Actions; this document records the local run separately.
-The initial `ubuntu-latest` run selected Ubuntu 26.04, where the setup action
-could not provide Python 3.9; Python 3.13's checks completed successfully. The
-workflow now pins a runner with published builds for both supported versions.
+Use a fresh real temporary destination for installation tests. The GitHub
+workflow repeats validation, unit/model checks and isolated full/profile installs
+on Python 3.9 and 3.13 with Ubuntu 24.04. GitHub Actions records the outcome for
+each commit; local results above are recorded separately.
 
 ## Limits
 
-No native Godot SDK/plugin implementation, physical-device game, store upload,
-real advertising, purchase or paid acquisition campaign was validated. The
-recipes instruct those checks for the actual game. Current store size limits
-were checked against official Apple and Google sources, but the artifact helper
-does not certify store eligibility or measure store downloads, update transfers,
-installed caches or device memory.
+No native Godot plugin, physical-device game, store upload, live ad/purchase,
+notification campaign, Game Center/Play Games account or player outcome was
+validated. Source-grounded integration recipes require those checks in the
+actual project. The generated image is a concept, not a working screen or proof
+of learning. Neither the library nor its tests establish retention, revenue,
+notification-frequency or neurochemical effects.
 
-Overgrowth cases are sanitised source-review, test and simulation lessons.
-Neither those cases nor the library evaluations establish retention or revenue
-uplift. Client compatibility and policy/API details must be rechecked as clients,
-SDKs and store requirements change.
+Store ceilings, platform capabilities and SDK requirements can change. Their
+references include check dates and require verification for the selected version,
+audience and markets. Overgrowth lessons remain sanitised source/test/simulation
+examples without a claimed live uplift.

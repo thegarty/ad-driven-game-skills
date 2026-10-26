@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "evidence": "synthetic example; not a live quest or validated server schema",
+  "definition_id": "garden_complete_routes",
+  "definition_revision": 1,
+  "purpose": "Practice available route choices",
+  "instance": {
+    "id": "fixture-player:route-practice:period-001",
+    "period_id": "period-001",
+    "assigned_at_utc": "2030-01-01T08:00:00Z",
+    "clock_authority": "fixture server clock",
+    "eligibility_snapshot": {
+      "available_route_ids": [
+        "route_a",
+        "route_b"
+      ],
+      "ordinary_play_available": true
+    }
+  },
+  "window": {
+    "entry_cutoff_utc": "2030-01-02T07:00:00Z",
+    "completion_cutoff_utc": "2030-01-02T08:00:00Z",
+    "claim_deadline_utc": "2030-01-03T08:00:00Z",
+    "period_timezone": "UTC",
+    "travel_policy": "retain assigned boundaries",
+    "late_event_policy": "accept trusted occurrence before completion cutoff if received before claim deadline",
+    "offline_policy": "pending until authority reconciliation"
+  },
+  "objective": {
+    "id": "complete_two_runs",
+    "type": "unique_event_count",
+    "event_type": "run_settled",
+    "event_schema_version": 1,
+    "target": 2,
+    "unit": "distinct completed eligible runs",
+    "filters": {
+      "outcome": "completed",
+      "route_id_in": [
+        "route_a",
+        "route_b"
+      ]
+    },
+    "distinct_key": "run_id",
+    "retroactive": false,
+    "completion_latches": true
+  },
+  "reward": {
+    "id": "route_practice_seeds",
+    "currency_id": "seeds",
+    "amount": 25,
+    "unit": "integer seeds",
+    "grant_identity": "instance_id + reward_id",
+    "overflow_policy": "remain claimable if destination unavailable",
+    "optional_ad_required": false
+  },
+  "revision_policy": "pin existing assignment and reward; explicit migration only"
+}

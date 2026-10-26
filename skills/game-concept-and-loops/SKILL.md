@@ -13,6 +13,8 @@ Inspect an existing game or brief before requesting more context. Establish audi
 
 Use [genre patterns](references/genre-patterns.md) for idle/incremental, tower defence, puzzle and casual concepts. Treat these as design options, not evidence that a genre will achieve a particular retention or revenue result.
 
+Use the [mechanics catalogue](references/mechanics-catalogue.md) when choosing idle/prestige, tower-defence, puzzle/merge or survivors/roguelite patterns. It connects player decisions to rewards, failure/recovery and observations, including the costs of combining genres.
+
 ## Build three connected loops
 
 - **Moment-to-moment:** the player's action, information available, tradeoff, feedback and skill they learn. Describe the meaningful decision; tapping by itself is an input, not a complete mechanic.
