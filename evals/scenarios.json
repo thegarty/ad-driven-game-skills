@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "purpose": "Behavioral evaluation prompts. Give the evaluator only prompt and named skill files; score against rubric afterward.",
+  "scenarios": [
+    {
+      "id": "idle-prototype",
+      "skills": ["ad-game-director", "game-concept-and-loops", "game-prototyping"],
+      "prompt": "I am one developer with two weeks. Design a portrait Godot idle garden-defence prototype for Android with optional rewarded ads. Give me a concrete first build plan and what I should learn from playtests. No existing analytics or assets are available.",
+      "rubric": ["Bounded core loop and prototype", "Specific player decisions and playtest questions", "Explicit assumptions including audience", "No invented retention or revenue result", "No live SDK/paid spend required for first prototype"]
+    },
+    {
+      "id": "retention-revenue-tradeoff",
+      "skills": ["game-retention-and-liveops", "game-analytics-and-experiments", "game-profitability-and-priorities"],
+      "prompt": "Synthetic report: after adding an extra interstitial, weekly ad revenue rose from 100 to 130 currency units and reported D7 retention fell from 18% to 12%. We also launched in two new countries. Should I keep the change? Give a decision and the evidence needed.",
+      "rubric": ["Does not infer causality from aggregate before/after", "Requests comparable mature cohorts and denominators", "Considers acquisition/geography mix and total cohort value", "Provides an actionable reversible experiment"]
+    },
+    {
+      "id": "timer-ads",
+      "skills": ["game-ad-monetization", "game-privacy-and-platform-policy"],
+      "prompt": "Our mobile tower-defence rounds last several minutes. I want an interstitial every 30 seconds to lift revenue. Recommend the placement behavior and an initial test.",
+      "rubric": ["Assesses gameplay transitions and current policy", "Does not blindly interrupt active play on a timer", "Distinguishes an experimental cap from a universal optimal frequency", "Includes player experience and revenue measurement"]
+    },
+    {
+      "id": "unavailable-ads",
+      "skills": ["game-ad-integration"],
+      "prompt": "In a Godot game, the rewarded bonus button spins forever after a no-fill response, and reconnecting sometimes immediately opens a video. Describe and test the corrected behavior. Use a fake provider, no live ads.",
+      "rubric": ["Bounded load/timeout and retry state", "Explicit player show intent after readiness", "Free gameplay remains available", "No reward for no-fill", "Fake provider failure scenarios"]
+    },
+    {
+      "id": "duplicate-reward",
+      "skills": ["game-ad-integration"],
+      "prompt": "A rewarded-ad adapter reports closed, then earned twice for the same opportunity. The game may crash while persisting the reward, then relaunch. Specify the durable grant and acknowledgement sequence, including tests. No backend currently exists.",
+      "rubric": ["Closed is not earned", "Immutable opportunity/reward identity", "Atomic durable reward and applied marker", "Acknowledge only durable grant", "Restart and duplicate delivery are idempotent", "States local/provider receipt persistence limits without claiming impossible guarantees"]
+    },
+    {
+      "id": "young-cohort",
+      "skills": ["game-analytics-and-experiments", "game-profitability-and-priorities"],
+      "prompt": "Synthetic launch data: 80 installs yesterday, 60 today, 50 recorded ad impressions and 0.10 currency units of estimated ad revenue. Can we report D7 retention and increase our acquisition budget? Explain what can be calculated now.",
+      "rubric": ["D7 is immature, not zero", "No invented DAU/retention/LTV/CPI", "Distinguishes tiny descriptive yield from forecast", "Defines next data collection and decision horizon"]
+    },
+    {
+      "id": "unfamiliar-engine",
+      "skills": ["game-ad-integration", "game-prototyping"],
+      "prompt": "Add rewarded ads to my mobile game using an engine and plugin that are not listed in this library. I have not provided their names or versions. What will you inspect and what can you design now?",
+      "rubric": ["Inspects repository before asking discoverable facts", "Does not invent SDK methods", "Separates portable contract from platform binding", "Requests essential missing versions only if unavailable"]
+    },
+    {
+      "id": "children-audience",
+      "skills": ["game-privacy-and-platform-policy", "game-ad-monetization"],
+      "prompt": "We are adapting our mobile puzzle game specifically for children aged 6 to 8 in several countries. Can we reuse our existing personalised ads and analytics setup? Give a concrete implementation investigation plan.",
+      "rubric": ["Does not reuse general-audience configuration automatically", "Checks current Apple/Google and market-specific requirements", "Distinguishes ad/analytics consent and parental gates", "Does not promise legal compliance or infer permission", "Gives actionable data-flow/provider/store review steps"]
+    },
+    {
+      "id": "size-and-compression",
+      "skills": ["game-size-and-performance"],
+      "prompt": "Our Godot mobile game grew substantially after adding textures, music and another ad SDK. I want to compress the APK and IPA until they fit the app stores and keep updates lightweight. Explain what you will measure, the applicable store limits, what to change first, and how to verify no quality or memory regression.",
+      "rubric": ["Separates upload/archive, device download, installed footprint and runtime memory", "Uses current primary store size limits with dates and correct scopes", "Treats store ceilings as limits rather than target budgets", "Inspects assets/imports/native dependencies before choosing compression", "Preserves perceptual quality, offline requirements and licenses", "Verifies final release artifacts and representative devices"]
+    }
+  ]
+}

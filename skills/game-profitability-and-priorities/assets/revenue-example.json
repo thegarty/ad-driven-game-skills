@@ -1,0 +1,10 @@
+{
+  "currency": "USD",
+  "horizon_days": 30,
+  "population": "Synthetic install cohort",
+  "assumptions": ["All inputs are synthetic arithmetic examples, not market benchmarks.", "Active days include day zero and use the same population as impressions and eCPM.", "eCPM is publisher proceeds; purchase revenue is after applicable fees/refunds."],
+  "scenarios": [
+    {"label": "baseline", "input_basis": "synthetic", "retained_active_days_per_install": 5, "impressions_per_active_day": 3, "realized_ecpm": 10, "net_iap_revenue_per_install": 0.1, "variable_cost_per_install": 0.02, "cpi": 0.2},
+    {"label": "more_ads_fewer_return_days", "input_basis": "synthetic", "retained_active_days_per_install": 3, "impressions_per_active_day": 4, "realized_ecpm": 10, "net_iap_revenue_per_install": 0.1, "variable_cost_per_install": 0.02, "cpi": 0.2}
+  ]
+}

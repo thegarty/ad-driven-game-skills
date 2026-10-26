@@ -1,0 +1,13 @@
+{
+  "currency": "seeds",
+  "steps": 4,
+  "active_minutes_per_step": 5,
+  "normal_income_per_active_minute": 2,
+  "initial_balance": 0,
+  "optional_earned_rewards_per_step": 1,
+  "optional_reward_value": 5,
+  "optional_reward_cap_total": 2,
+  "spends": [{"step": 2, "label": "defence upgrade", "cost": 20}],
+  "milestones": [{"label": "first upgrade affordability", "cost": 20}, {"label": "second garden affordability", "cost": 40}],
+  "assumptions": ["Entirely synthetic example, unrelated to actual game telemetry.", "Each step represents five active minutes; normal earnings remain fixed.", "The first two optional rewards are assumed already earned; this does not predict viewing or fill rates."]
+}

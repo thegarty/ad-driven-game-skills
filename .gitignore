@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+.pytest_cache/
+.coverage
+htmlcov/
+.ad-driven-game-skills-install.json
+.ad-driven-game-skills-install.lock/
+.ad-game-install-*/
